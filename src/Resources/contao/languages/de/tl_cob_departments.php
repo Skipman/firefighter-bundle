@@ -17,7 +17,7 @@ $GLOBALS['TL_LANG']['tl_cob_departments']['show'] = ['Feuerwehr anzeigen', 'Deta
 
 $GLOBALS['TL_LANG']['tl_cob_departments']['department_legend'] = 'Feuerwehr';
 $GLOBALS['TL_LANG']['tl_cob_departments']['social_legend'] = 'Soziale Kanäle';
-$GLOBALS['TL_LANG']['tl_cob_departments']['fleet_legend'] = ['Fahrzeuge'];
+$GLOBALS['TL_LANG']['tl_cob_departments']['fleet_legend'] = 'Fahrzeuge';
 
 $GLOBALS['TL_LANG']['tl_cob_departments']['ffnumber'] = ['FF Nummer', 'FF Nummer lt. FDISK'];
 $GLOBALS['TL_LANG']['tl_cob_departments']['ffname'] = ['FF Name', 'Name der Feuerwehr'];
