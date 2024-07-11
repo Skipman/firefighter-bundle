@@ -1,0 +1,41 @@
+<div class="<?= $this->class ?> block team-block"<?= $this->cssID ?><?php if ($this->style): ?> style="<?= $this->style ?>"<?php endif; ?>>
+  <div class="inner-box">
+
+    <?php if ($this->addMembersImage): ?>
+      <figure class="image_container<?= $this->floatClass ?>"<?php if ($this->margin): ?> style="<?= $this->margin ?>"<?php endif; ?>>
+
+        <?php if ($this->href): ?>
+          <a href="<?= $this->href ?>"<?php if ($this->linkTitle): ?> title="<?= $this->linkTitle ?>"<?php endif; ?><?= $this->attributes ?>>
+        <?php endif; ?>
+
+        <?php $this->insert('picture_default', $this->picture); ?>
+
+        <?php if ($this->href): ?>
+          </a>
+        <?php endif; ?>
+
+        <?php if ($this->caption): ?>
+          <figcaption class="caption"><?= $this->caption ?></figcaption>
+        <?php endif; ?>
+
+      </figure>
+    <?php endif; ?>
+
+      <div class="content_container">
+      <div class="upper_content">
+        <div class="members__name">
+          <abbr title="<?= $this->membersRankLongAbbr; ?>"><?= $this->membersRankShortAbbr; ?></abbr> <?= $this->membersFirstname ?> <?= $this->membersLastname ?>
+        </div>
+      </div>
+      <div class="lower_content">
+        <?php if($this->membersHomebase): ?>
+          <div class="contact__description">
+            Mitglied der FF <a href="<?= $this->website ?>" title="Die Webseite der FF <?= $this->membersHomebase; ?> in neuem Fenster öffnen" target="_blank"><?= $this->membersHomebase ?></a>
+          </div>
+        <?php endif; ?>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<pre><?//php $this->dumpTemplateVars(); ?></pre>-->

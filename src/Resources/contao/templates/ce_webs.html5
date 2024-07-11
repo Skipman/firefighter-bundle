@@ -1,0 +1,12 @@
+<div class="webs_element">
+    <p>
+        <span><strong>Die FF <?= $this->departmentName; ?> im Web:</strong> 
+        <?php if ($this->department['website']): ?><a href="<?php echo $this->department['website']; ?>">Website</a><?php if ($this->department['facebook'] || $this->department['instagram'] || $this->department['youtube'] || $this->department['twitter'] || $this->department['tiktok']): ?>,<?php endif; ?><?php endif; ?> 
+        <?php if ($this->department['facebook']): ?><a href="<?php echo $this->department['facebook']; ?>">Facebook</a><?php if ($this->department['instagram'] || $this->department['youtube'] || $this->department['twitter'] || $this->department['tiktok']): ?>,<?php endif; ?><?php endif; ?> 
+        <?php if ($this->department['instagram']): ?><a href="<?php echo $this->department['instagram']; ?>">Instagram</a><?php if ($this->department['youtube'] || $this->department['twitter'] || $this->department['tiktok']): ?>,<?php endif; ?><?php endif; ?> 
+        <?php if ($this->department['youtube']): ?><a href="<?php echo $this->department['youtube']; ?>">Youtube</a><?php if ($this->department['twitter'] || $this->department['tiktok']): ?>,<?php endif; ?><?php endif; ?> 
+        <?php if ($this->department['twitter']): ?><a href="<?php echo $this->department['twitter']; ?>">Twitter</a><?php if ($this->department['tiktok']): ?>,<?php endif; ?><?php endif; ?> 
+        <?php if ($this->department['tiktok']): ?><a href="<?php echo $this->department['tiktok']; ?>">TikTok</a><?php endif; ?></span>
+    </p>
+    <!--<pre><?//php $this->dumpTemplateVars(); ?></pre> -->
+</div>

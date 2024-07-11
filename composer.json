@@ -1,0 +1,33 @@
+{
+  "name": "skipman/firefighter-bundle",
+  "description": "Fügt die Verwaltung feuerwehrspezifischer Daten hinzu",
+  "keywords": [
+      "contao",
+      "bundle",
+      "tag 5",
+      "tag 4"
+  ],
+  "type": "contao-bundle",
+  "license": "GPL-3.0-or-later",
+  "authors": [
+      {
+          "name": "Ronald Boda",
+          "email": "info@coboda.at",
+          "homepage": "https://coboda.at",
+          "role": "Developer"
+      }
+  ],
+  "require": {
+      "php": "^7.4 || ^8.0",
+      "contao/core-bundle": "^5.3",
+      "menatwork/contao-multicolumnwizard-bundle": "^3.3"
+  },
+  "autoload": {
+      "psr-4": {
+          "Skipman\\FirefighterBundle\\": "src/"
+      }
+  },
+  "extra": {
+    "contao-manager-plugin": "Skipman\\FirefighterBundle\\ContaoManager\\Plugin"
+  }
+}

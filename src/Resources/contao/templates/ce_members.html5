@@ -1,0 +1,66 @@
+<div class="<?= $this->class ?> block team-block"<?= $this->cssID ?><?php if ($this->style): ?> style="<?= $this->style ?>"<?php endif; ?>>
+  <div class="inner-box">
+
+    <?php if ($this->addMembersImage): ?>
+      <figure class="image_container<?= $this->floatClass ?>"<?php if ($this->margin): ?> style="<?= $this->margin ?>"<?php endif; ?>>
+
+        <?php if ($this->href): ?>
+          <a href="<?= $this->href ?>"<?php if ($this->linkTitle): ?> title="<?= $this->linkTitle ?>"<?php endif; ?><?= $this->attributes ?>>
+        <?php endif; ?>
+
+        <?php $this->insert('picture_default', $this->picture); ?>
+
+        <?php if ($this->href): ?>
+          </a>
+        <?php endif; ?>
+
+        <?php if ($this->caption): ?>
+          <figcaption class="caption"><?= $this->caption ?></figcaption>
+        <?php endif; ?>
+
+      </figure>
+    <?php endif; ?>
+
+    <div class="content_container">
+      <div class="upper_content">
+        
+        <div class="members__name">
+          <abbr title="<?= $this->membersRankLongAbbr; ?>"><?= $this->membersRankShortAbbr; ?></abbr> <?= $this->membersFirstname ?> <?= $this->membersLastname ?>
+        </div>
+
+        <?php if ($this->rankImage): ?>
+          <img src="<?= $this->rankImage->path ?>" alt="Dienstrangabzeichen für <?= $this->membersRankLongAbbr; ?>" class="rank-image">
+        <?php endif; ?>
+
+        <?php if($this->membersFunctionSectionShort): ?>
+          <div class="contact__position">
+            <abbr title="<?= $this->membersFunctionSectionLong ?>"><?= $this->membersFunctionSectionShort ?></abbr>
+          </div>
+        <?php endif; ?>
+      </div>
+
+      <div class="lower_content">
+        <?php if($this->membersHomebase): ?>
+          <div class="contact__description">
+            Mitglied der FF <?= $this->membersHomebase ?>
+          </div>
+        <?php endif; ?>
+
+        <hr>
+
+        <?php if($this->membersPhone): ?>
+          <div class="members__phone">
+            <a href="<?= $this->membersPhoneLink ?>"><?= $this->membersPhone ?></a>
+          </div>
+        <?php endif; ?>
+        
+        <?php if($this->membersEmail): ?>
+          <div class="members__email">
+            <a href="<?= $this->membersEmailLink ?>" title="<?= $this->membersName ?>">E-Mail senden</a>
+          </div>
+        <?php endif; ?>
+      </div>
+    </div>
+  </div>
+</div>
+<!--<pre><?//php $this->dumpTemplateVars(); ?></pre> -->

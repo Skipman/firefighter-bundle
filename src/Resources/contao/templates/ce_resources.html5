@@ -1,0 +1,31 @@
+<!-- src/Resources/contao/templates/ce_resources.html5 -->
+
+<div class="ce_firefighter_resources">
+    <?php if (!empty($this->departments)): ?>
+        <h2>Eingesetzte Resourcen</h2>
+        <ul>
+            <?php foreach ($this->departments as $department): ?>
+                <li>
+                    FF <?php echo $department['ffname']; ?>:
+                    <?php echo $department['vehicles']; ?> / <?php echo $department['team']; ?> Mitglieder
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
+</div>
+
+<?php if (!empty($this->otherOrganisations)): ?>
+        <h2>Andere Organisationen</h2>
+        <ul>
+            <?php foreach ($this->otherOrganisations as $organisation): ?>
+                <li>
+                    <?php echo $organisation['organisationName']; ?>:
+                    <?php echo $organisation['vehicles']; ?> / <?php echo $organisation['team']; ?> Mitglieder
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
+</div>
+
+
+<!--<?//php $this->dumpTemplateVars(); ?> -->

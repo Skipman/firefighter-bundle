@@ -1,0 +1,5 @@
+/* backend_custom.css */
+.multicolumnwizard .hidelabel h3, 
+.multicolumnwizard .hidelabel label {
+  display: inherit !important; /* Das Label wird wieder sichtbar gemacht */
+}

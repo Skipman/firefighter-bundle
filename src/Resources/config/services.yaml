@@ -1,0 +1,13 @@
+services:
+    Skipman\FirefighterBundle\EventListener\BackendAssetsListener:
+        arguments:
+            - '@contao.framework'
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+    _defaults:
+        autowire: true
+        autoconfigure: true
+    
+    Skipman\FirefighterBundle\:
+        resource: ../src
+        exclude: ../src/{ContaoManager,DependencyInjection}
