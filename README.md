@@ -1,2 +1,2 @@
 # firefighter-bundle
- Manage Firefigher Data in Contao
+ Fügt die Verwaltung feuerwehrspezifischer Daten hinzu
