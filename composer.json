@@ -8,7 +8,7 @@
       "tag 4"
   ],
   "type": "contao-bundle",
-  "license": "MIT",
+  "license": "GPL-3.0-or-later",
   "authors": [
       {
           "name": "Ronald Boda",
@@ -28,6 +28,11 @@
       }
   },
   "extra": {
-    "contao-manager-plugin": "Skipman\\FirefighterBundle\\ContaoManager\\Plugin"
+    "contao-manager-plugin": "Skipman\\FirefighterBundle\\ContaoManager\\Plugin",
+    "contao": {
+        "sources": {
+            "bundles/skipmanfirefighter": "Resources/public"
+        }
+    }
   }
 }
