@@ -1,7 +1,8 @@
 <!-- src/Resources/contao/templates/ce_resources.html5 -->
 
-<div class="ce_firefighter_resources">
-    <?php if (!empty($this->departments)): ?>
+
+<?php if (!empty($this->departments)): ?>
+    <div class="ce_firefighter_resources">
         <h2>Eingesetzte Resourcen</h2>
         <ul>
             <?php foreach ($this->departments as $department): ?>
@@ -11,21 +12,31 @@
                 </li>
             <?php endforeach; ?>
         </ul>
-    <?php endif; ?>
-</div>
+    </div>
+<?php endif; ?>
+
 
 <?php if (!empty($this->otherOrganisations)): ?>
+    <div>
         <h2>Andere Organisationen</h2>
         <ul>
             <?php foreach ($this->otherOrganisations as $organisation): ?>
                 <li>
-                    <?php echo $organisation['organisationName']; ?>:
-                    <?php echo $organisation['vehicles']; ?> / <?php echo $organisation['team']; ?> Mitglieder
+                    <?php if (!empty($organisation['otherOrganisationName'])): ?>
+                        <?php echo $organisation['otherOrganisationName']; ?>:
+                    <?php endif; ?>
+                    <?php if (!empty($organisation['otherOrganisationVehicles'])): ?>
+                        <?php echo $organisation['otherOrganisationVehicles']; ?> /
+                    <?php endif; ?>
+                    <?php if (!empty($organisation['team'])): ?>
+                        <?php echo $organisation['team']; ?> Mitglieder
+                    <?php endif; ?>
                 </li>
             <?php endforeach; ?>
         </ul>
-    <?php endif; ?>
-</div>
+    </div>    
+<?php endif; ?>
+
 
 
 <!--<?//php $this->dumpTemplateVars(); ?> -->

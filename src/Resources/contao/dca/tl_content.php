@@ -29,9 +29,13 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['members'] =
 
 // Registrieren des Subpalette-Selector-Feldes
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'addMembersImage';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'addOtherOrganisationDetails';
+
 
 // Definieren der Subpalette
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['addMembersImage'] = 'singleSRC,alt,size,imagemargin,imageUrl,fullsize,caption,floating';
+$GLOBALS['TL_DCA']['tl_content']['subpalettes']['addOtherOrganisationDetails'] = 'otherOrganisationDetails';
+
 
 // Add the label callback to the existing array
 $GLOBALS['TL_DCA']['tl_content']['list']['label']['label_callback'] = ['Skipman\FirefighterBundle\ContentElement\FirefighterMembersElement', 'addMembersElementLabel'];
@@ -40,7 +44,8 @@ $GLOBALS['TL_DCA']['tl_content']['list']['label']['label_callback'] = ['Skipman\
 $GLOBALS['TL_DCA']['tl_content']['palettes']['webs'] = '{type_legend},type;{website_legend},webDepartment;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space;{invisible_legend:hide},invisible,start,stop';
 
 // Add ContentElement FF_Resources
-$GLOBALS['TL_DCA']['tl_content']['palettes']['ff_resources'] = '{type_legend},type;{firefighter_legend},firefighterDetails;{otherOrganisation_legend},otherOrganisationDetails;{protected_legend:hide},protected;{expert_legend:hide},guests,invisible,start,stop';
+//$GLOBALS['TL_DCA']['tl_content']['palettes']['ff_resources'] = '{type_legend},type;{firefighter_legend},firefighterDetails;{otherOrganisation_legend},otherOrganisationDetails;{protected_legend:hide},protected;{expert_legend:hide},guests,invisible,start,stop';
+$GLOBALS['TL_DCA']['tl_content']['palettes']['ff_resources'] = '{type_legend},type;{firefighter_legend},firefighterDetails;{otherOrganisation_legend},addOtherOrganisationDetails;{protected_legend:hide},protected;{expert_legend:hide},guests,invisible,start,stop';
 
 /*
  * Add fields for content-element members
@@ -214,7 +219,17 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['firefighterDetails'] = [
         ],
         'tl_class' => 'clr'
     ],
-    'sql' => "blob NULL"
+    'sql' => "blob NULL",
+    'minCount' => 0, // Minimum Anzahl an Zeilen
+    'maxCount' => 0, // Unbeschränkt
+];
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['addOtherOrganisationDetails'] = [
+    'label' => &$GLOBALS['TL_LANG']['tl_content']['addOtherOrganisationDetails'],
+    'exclude' => true,
+    'inputType' => 'checkbox',
+    'eval' => ['submitOnChange' => true, 'tl_class' => 'clr'],
+    'sql' => "char(1) NOT NULL default ''",
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['otherOrganisationDetails'] = [
@@ -239,7 +254,9 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['otherOrganisationDetails'] = [
                 'eval' => ['maxlenght' => 255,'style' => 'width:100px']
             ],
         ],
-        'tl_class' => 'clr'
+        'tl_class' => 'clr',
+        'minCount' => 0, // Minimum Anzahl an Zeilen
+        'maxCount' => 0, // Unbeschränkt
     ],
     'sql' => "blob NULL"
 ];

@@ -30,6 +30,7 @@ $GLOBALS['TL_LANG']['tl_content']['addMembersImage'] = ['Bild hinzufügen', 'Ein
 $GLOBALS['TL_LANG']['tl_content']['webDepartment'] = ['Feuerwehr', 'Bitte wählen Sie eine Feuerwehr aus.'];
 
 // ce_resources
+$GLOBALS['TL_LANG']['tl_content']['addOtherOrganisationDetails'] = ['Weitere Organisationen hinzufügen', 'Weitere Einsatzkräfte / Organisationen hinzufügen und verwalten.'];
 $GLOBALS['TL_LANG']['tl_content']['firefighter_legend'] = 'Einsatzresourcen Feuerwehren';
 $GLOBALS['TL_LANG']['tl_content']['firefighterDetails'] = ['Feuerwehrdetails', 'Verwalten Sie Feuerwehrresourcen wie Fahrzeuge und Teamgröße.'];
 $GLOBALS['TL_LANG']['tl_content']['ffname'] = ['Feuerwehr','Wähle eine FF aus. Wenn die FF noch nicht angelegt ist, kannst Du sie auch unter "Weitere Einsatzkräfte / Organisationen" eintragen.'];
