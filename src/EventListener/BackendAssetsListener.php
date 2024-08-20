@@ -4,30 +4,32 @@
  * This file is part of Contao Firefighter Bundle.
  * 
  * (c) Ronald Boda 2022 <info@coboda.at>
- * @license MIT
+ * @license GPL-3.0-or-later
  * For the full copyright and license information,
  * please view the LICENSE file that was distributed with this source code.
- * @link https://github.com/skipman/firefighter-bundle
+ * @link https://github.com/skipman/contao-firefighter-bundle
  */
 
- namespace Skipman\FirefighterBundle\EventListener;
- 
- use Contao\BackendUser;
- use Contao\CoreBundle\ServiceAnnotation\Hook;
- use Contao\CoreBundle\ServiceAnnotation\Callback;
- use Symfony\Component\HttpKernel\Event\RequestEvent;
- use Symfony\Component\HttpKernel\HttpKernelInterface;
- 
- class BackendAssetsListener
- {
-     public function onKernelRequest(RequestEvent $event): void
-     {
-         $request = $event->getRequest();
- 
-         // Check if request is for the backend
-         if ($request->get('_scope') === 'backend') {
-             $GLOBALS['TL_CSS'][] = 'bundles/skipmanfirefighter/css/backend_custom.css|static';
-         }
-     }
- }
- 
+namespace Skipman\ContaoFirefighterBundle\EventListener;
+
+use Contao\CoreBundle\Routing\ScopeMatcher;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
+
+class BackendAssetsListener
+{
+    protected ScopeMatcher $scopeMatcher;
+
+    public function __construct(ScopeMatcher $scopeMatcher)
+    {
+        $this->scopeMatcher = $scopeMatcher;
+    }
+
+    public function onKernelRequest(RequestEvent $e): void
+    {
+        $request = $e->getRequest();
+
+        if ($this->scopeMatcher->isBackendRequest($request)) {
+            $GLOBALS['TL_CSS'][] = 'bundles/contaofirefighter/backend.css|static';
+        }
+    }
+}

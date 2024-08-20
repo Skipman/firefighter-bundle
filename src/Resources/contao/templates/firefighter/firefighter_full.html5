@@ -1,0 +1,65 @@
+<div class="layout_full firefighter block<?= $this->class; ?>" itemscope itemtype="http://schema.org/Article">
+  
+  <div class="name">
+    <span><h1 itemprop="name" class="heading--2"><abbr title="<?= $this->membersRankLongAbbr; ?>"><?= $this->membersRankShortAbbr; ?></abbr> <?= $this->membersFirstname; ?> <?= $this->membersLastname ?></h1>
+    <?php if ($this->rankImage): ?>
+      <img src="<?= $this->rankImage; ?>" alt="<?= $this->membersRankLongAbbr; ?>">
+    <?php endif; ?></span>
+  </div>
+
+  <div class="homebase-info">
+    <?php if (!empty($this->membersHomebaseWebsite)): ?>
+      Mitglied der <a href="<?= $this->membersHomebaseWebsite ?>" target="_blank" title="Die Webseite der FF <?= $this->membersHomebase ?> in neuem Fenster öffnen">FF <?= $this->membersHomebase ?></a>
+    <?php else: ?>
+      Mitglied der FF <?= $this->membersHomebase ?>
+    <?php endif; ?>
+  </div>
+
+  <div>
+    <p><strong>Freiwilliges Mitglied seit:</strong> <?= $this->membersSince; ?></p>
+  </div>
+
+  <div class="member-image">
+    <?php if (!empty($this->memberImage['path'])): ?>
+      <figure class="member-image">
+        <img src="<?= $this->memberImage['path']; ?>" alt="<?= $this->memberImage['alt']; ?>" title="<?= $this->memberImage['title']; ?>">
+        <?php if (!empty($this->memberImage['title'])): ?>
+          <figcaption><?= $this->memberImage['title']; ?></figcaption>
+        <?php endif; ?>
+      </figure>
+    <?php endif; ?>
+  </div>
+
+  <div class="contact-info">
+    <?php if ($this->membersEmail): ?>
+        <p><strong>E-Mail:</strong> <a href="mailto:<?= $this->membersEmail; ?>"><?= $this->membersEmail; ?></a></p>
+    <?php endif; ?>
+
+    <?php if ($this->membersPhone): ?>
+        <p>Telefon: <a href="<?= $this->membersPhoneFormatted; ?>"><?= $this->membersPhone; ?></a></p>
+    <?php endif; ?>
+  </div>
+  <?php if (!empty($this->membersFunctionLocal)): ?>  
+  <div class="functions-local">
+    <h2>Lokale Funktionen</h2>
+      
+        <?php foreach ($this->membersFunctionLocal as $function): ?>
+          <div class="function">
+              <p><?= $function['long']; ?> (<?= $function['period']; ?>)</p>
+          </div>
+        <?php endforeach; ?>
+  </div>
+  <?php endif; ?>
+
+  <?php if (!empty($this->membersFunctionSection)): ?>
+    <div class="functions-section">
+      <h2>Überörtliche Funktionen</h2>
+      <p>
+        <?php foreach ($this->membersFunctionSection as $function): ?>
+          <?= $function['long']; ?> <?php if (!empty($function['period'])): ?>(<?= $function['period'] ?? ''; ?>)<?php endif; ?><br>
+        <?php endforeach; ?>
+      </p>
+    </div>
+  <?php endif; ?>
+</div>
+<!--<div style="clear: both;"><pre><?//php echo $this->dumpTemplateVars(); ?></pre></div>-->

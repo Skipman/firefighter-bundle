@@ -10,22 +10,21 @@
  * @link https://github.com/skipman/contao-firefighter-bundle
  */
 
- namespace Skipman\FirefighterBundle\ContaoManager;
- 
- use Contao\CoreBundle\ContaoCoreBundle;
- use Contao\ManagerPlugin\Bundle\BundlePluginInterface;
- use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
- use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
- use Skipman\FirefighterBundle\FirefighterBundle;
- 
- class Plugin implements BundlePluginInterface
- {
-     public function getBundles(ParserInterface $parser)
-     {
-         return [
-             BundleConfig::create(FirefighterBundle::class)
-                 ->setLoadAfter([ContaoCoreBundle::class]),
-         ];
-     }
- }
- 
+namespace Skipman\ContaoFirefighterBundle\ContaoManager;
+
+use Contao\CoreBundle\ContaoCoreBundle;
+use Contao\ManagerPlugin\Bundle\BundlePluginInterface;
+use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
+use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
+use Skipman\ContaoFirefighterBundle\ContaoFirefighterBundle;
+
+class Plugin implements BundlePluginInterface
+{
+    public function getBundles(ParserInterface $parser)
+    {
+        return [
+            BundleConfig::create(ContaoFirefighterBundle::class)
+                ->setLoadAfter([ContaoCoreBundle::class]),
+        ];
+    }
+}

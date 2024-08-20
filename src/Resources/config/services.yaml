@@ -1,13 +1,29 @@
 services:
-    Skipman\FirefighterBundle\EventListener\BackendAssetsListener:
-        arguments:
-            - '@contao.framework'
-        tags:
-            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
     _defaults:
         autowire: true
         autoconfigure: true
-    
-    Skipman\FirefighterBundle\:
-        resource: ../src
-        exclude: ../src/{ContaoManager,DependencyInjection}
+
+    Skipman\ContaoFirefighterBundle\:
+        resource: '../src/*'
+        public: true
+
+    Skipman\ContaoFirefighterBundle\EventListener\:
+        resource: '../src/EventListener/*'
+        public: true
+
+    Skipman\ContaoFirefighterBundle\EventListener\BackendAssetsListener:
+        tags:
+            - { name: 'kernel.event_listener', event: 'kernel.request', method: 'onKernelRequest' }
+
+    Skipman\ContaoFirefighterBundle\EventSubscriber\KernelRequestSubscriber:
+        arguments:
+            - '@contao.routing.scope_matcher'
+        tags:
+            - { name: kernel.event_subscriber }
+
+    Skipman\ContaoFirefighterBundle\Picker\:
+        resource: '../src/Picker/*'
+
+    Skipman\ContaoFirefighterBundle\Modules\ModuleFirefighterReader:
+        arguments:
+            $logger: '@logger'

@@ -1,12 +1,12 @@
 {
-  "name": "skipman/firefighter-bundle",
+  "name": "skipman/contao-firefighter-bundle",
+  "type": "contao-bundle",
   "description": "Fügt die Verwaltung feuerwehrspezifischer Daten hinzu",
   "keywords": [
       "contao",
       "bundle",
-      "firefighter"
+      "firefighters"
   ],
-  "type": "contao-bundle",
   "license": "GPL-3.0-or-later",
   "authors": [
       {
@@ -16,22 +16,29 @@
           "role": "Developer"
       }
   ],
+  "autoload": {
+    "psr-4": {
+      "Skipman\\ContaoFirefighterBundle\\": "src/"
+    }
+  },
   "require": {
       "php": "^7.4 || ^8.0",
       "contao/core-bundle": "^5.3",
       "menatwork/contao-multicolumnwizard-bundle": "^3.3"
   },
-  "autoload": {
-      "psr-4": {
-          "Skipman\\FirefighterBundle\\": "src/"
-      }
-  },
   "extra": {
-    "contao-manager-plugin": "Skipman\\FirefighterBundle\\ContaoManager\\Plugin",
+    "contao-manager-plugin": "Skipman\\ContaoFirefighterBundle\\ContaoManager\\Plugin",
     "contao": {
-        "sources": {
-            "bundles/skipmanfirefighter": "Resources/public"
-        }
+      "sources": {
+        "bundles/skipmancontaofirefighter": "Resources/public"
+      }
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "contao-components/installer": true,
+      "contao/manager-plugin": true,
+      "php-http/discovery": true
     }
   }
 }

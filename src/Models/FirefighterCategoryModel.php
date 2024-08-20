@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /*
  * This file is part of Contao Firefighter Bundle.
@@ -10,5 +10,19 @@
  * @link https://github.com/skipman/contao-firefighter-bundle
  */
 
-$GLOBALS['TL_LANG']['CTE']['ff_resources'] = ['FF-Einsatzresourcen', 'Eingesetzte Resourcen verwalten'];
-$GLOBALS['TL_LANG']['CTE']['webs'] = ['FF-Webs', 'Fügt ein Inhaltselement mit den Webseiten- und Social-Media-Links der Feuerwehr hinzu.'];
+ namespace Skipman\ContaoFirefighterBundle\Models;
+
+ use Contao\Model;
+
+/**
+ * Reads and writes firefighter items.
+ */
+class FirefighterCategoryModel extends Model
+{
+    /**
+     * Table name.
+     *
+     * @var string
+     */
+    protected static $strTable = 'tl_firefighter_category';
+}
