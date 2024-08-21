@@ -33,5 +33,4 @@
         </div>
     </div>
   </div>
-  <!--<pre><?//php echo $this->dumpTemplateVars(); ?></pre>-->
 </div>

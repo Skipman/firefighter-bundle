@@ -63,4 +63,3 @@
     <?php endif; ?>
   </div>  
 </div>
-<!--<div style="clear: both;"><pre><?//php echo $this->dumpTemplateVars(); ?></pre></div>-->

@@ -32,5 +32,3 @@
         </ul>
     </div>    
 <?php endif; ?>
-
-<!--<?//php $this->dumpTemplateVars(); ?> -->
