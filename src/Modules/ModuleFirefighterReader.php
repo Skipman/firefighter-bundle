@@ -1,5 +1,15 @@
 <?php declare(strict_types=1);
 
+/*
+ * This file is part of Contao Firefighter Bundle.
+ * 
+ * (c) Ronald Boda 2022 <info@coboda.at>
+ * @license GPL-3.0-or-later
+ * For the full copyright and license information,
+ * please view the LICENSE file that was distributed with this source code.
+ * @link https://github.com/skipman/contao-firefighter-bundle
+ */
+
 namespace Skipman\ContaoFirefighterBundle\Modules;
 
 use Contao\BackendTemplate;
@@ -91,24 +101,41 @@ class ModuleFirefighterReader extends ModuleFirefighter
         $objTemplate->setData($objItem->row());
 
         // Get the local functions
-        $localFunctions = StringUtil::deserialize($objItem->membersFunctionLocalWizard);
+        $localFunctions = StringUtil::deserialize($objItem->membersFunctionLocalWizard, true);
+        $filteredLocalFunctions = [];
+
         if (is_array($localFunctions) && !empty($localFunctions)) {
-            foreach ($localFunctions as &$function) {
-                $function['long'] = $this->getFunctionLongName($function['membersFunctionLocal']);
-                $function['period'] = $function['membersFunctionLocalPeriod'] ?? '';
+            foreach ($localFunctions as $function) {
+                if (!empty($function['membersFunctionLocal'])) {
+                    $function['long'] = $this->getFunctionLongName($function['membersFunctionLocal']);
+                    $function['period'] = $function['membersFunctionLocalPeriod'] ?? '';
+                    $filteredLocalFunctions[] = $function; // Add only if not empty
+                }
             }
-            $objTemplate->membersFunctionLocal = $localFunctions;
+        }
+
+        if (!empty($filteredLocalFunctions)) {
+            $objTemplate->membersFunctionLocal = $filteredLocalFunctions;
         }
 
         // Get the section functions
-        $sectionFunctions = StringUtil::deserialize($objItem->membersFunctionSectionWizard);
+        $sectionFunctions = StringUtil::deserialize($objItem->membersFunctionSectionWizard, true);
+        $filteredSectionFunctions = [];
+
         if (is_array($sectionFunctions) && !empty($sectionFunctions)) {
-            foreach ($sectionFunctions as &$function) {
-                $function['long'] = $this->getFunctionLongName($function['membersFunctionSection']);
-                $function['period'] = $function['membersFunctionSectionPeriod'] ?? '';
+            foreach ($sectionFunctions as $function) {
+                if (!empty($function['membersFunctionSection'])) {
+                    $function['long'] = $this->getFunctionLongName($function['membersFunctionSection']);
+                    $function['period'] = $function['membersFunctionSectionPeriod'] ?? '';
+                    $filteredSectionFunctions[] = $function; // Add only if not empty
+                }
             }
-            $objTemplate->membersFunctionSection = $sectionFunctions;
         }
+
+        if (!empty($filteredSectionFunctions)) {
+            $objTemplate->membersFunctionSection = $filteredSectionFunctions;
+        }
+
 
         // Add other item data to the template
         $objTemplate->class = ('' !== $objItem->cssClass ? ' '.$objItem->cssClass : '').$strClass;
