@@ -319,22 +319,27 @@ class ModuleFirefighterList extends ModuleFirefighter
         // Get the local functions
         $localFunctions = StringUtil::deserialize($objItem->membersFunctionLocalWizard);
         if (is_array($localFunctions) && !empty($localFunctions)) {
-            foreach ($localFunctions as &$function) {
-                $function['short'] = $this->getFunctionShortName($function['membersFunctionLocal']);
-                $function['period'] = $function['membersFunctionLocalPeriod'] ?? '';
-            }
-            $objTemplate->membersFunctionLocal = $localFunctions;
+            // Use only the first function
+            $firstFunction = $localFunctions[0];
+            $firstFunction['short'] = $this->getFunctionShortName($firstFunction['membersFunctionLocal']);
+            $firstFunction['period'] = $firstFunction['membersFunctionLocalPeriod'] ?? '';
+            
+            // Only set the first function
+            $objTemplate->membersFunctionLocal = [$firstFunction];
         }
 
         // Get the section functions
         $sectionFunctions = StringUtil::deserialize($objItem->membersFunctionSectionWizard);
         if (is_array($sectionFunctions) && !empty($sectionFunctions)) {
-            foreach ($sectionFunctions as &$function) {
-                $function['short'] = $this->getFunctionShortName($function['membersFunctionSection']);
-                $function['period'] = $function['membersFunctionSectionPeriod'] ?? '';
-            }
-            $objTemplate->membersFunctionSection = $sectionFunctions;
+            // Use only the first function
+            $firstFunction = $sectionFunctions[0];
+            $firstFunction['short'] = $this->getFunctionShortName($firstFunction['membersFunctionSection']);
+            $firstFunction['period'] = $firstFunction['membersFunctionSectionPeriod'] ?? '';
+            
+            // Only set the first function
+            $objTemplate->membersFunctionSection = [$firstFunction];
         }
+
 
         // Add other item data to the template
         $objTemplate->class = ('' !== $objItem->cssClass ? ' '.$objItem->cssClass : '').$strClass;

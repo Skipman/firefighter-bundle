@@ -1,15 +1,5 @@
 <?php declare(strict_types=1);
 
-/*
- * This file is part of Contao Firefighter Bundle.
- * 
- * (c) Ronald Boda 2022 <info@coboda.at>
- * @license GPL-3.0-or-later
- * For the full copyright and license information,
- * please view the LICENSE file that was distributed with this source code.
- * @link https://github.com/skipman/contao-firefighter-bundle
- */
-
 namespace Skipman\ContaoFirefighterBundle\Modules;
 
 use Contao\BackendTemplate;
@@ -136,7 +126,6 @@ class ModuleFirefighterReader extends ModuleFirefighter
             $objTemplate->membersFunctionSection = $filteredSectionFunctions;
         }
 
-
         // Add other item data to the template
         $objTemplate->class = ('' !== $objItem->cssClass ? ' '.$objItem->cssClass : '').$strClass;
         $objTemplate->headline = $objItem->headline;
@@ -171,28 +160,48 @@ class ModuleFirefighterReader extends ModuleFirefighter
         }
 
         // Add the member image
-        if ($objItem->addImage && '' !== $objItem->singleSRC) {
-            $objTemplate->memberImage = $this->getMemberImage($objItem);
-        }
+        $this->getMemberImage($objItem, $objTemplate);
 
         return $objTemplate->parse();
     }
 
-    private function getMemberImage($objItem)
+    private function getMemberImage($objItem, $objTemplate)
     {
-        if ($objItem->singleSRC) {
+        $objTemplate->addImage = false;
+
+        // Add an image
+        if ($objItem->addImage && '' !== $objItem->singleSRC) {
             $objModel = FilesModel::findByUuid($objItem->singleSRC);
 
-            if ($objModel !== null && is_file(System::getContainer()->getParameter('kernel.project_dir') . '/' . $objModel->path)) {
-                return [
-                    'path' => $objModel->path,
-                    'alt' => $objItem->alt,
-                    'title' => $objItem->imageTitle
-                ];
+            $projectDir = System::getContainer()->getParameter('kernel.project_dir');
+
+            if (null !== $objModel && is_file($projectDir.'/'.$objModel->path)) {
+                $arrArticle = $objItem->row();
+
+                $imgSize = $objItem->size ?: null;
+
+                // Override the default image size
+                if ('' !== $this->imgSize) {
+                    $size = StringUtil::deserialize($this->imgSize);
+
+                    if ($size[0] > 0 || $size[1] > 0 || is_numeric($size[2])) {
+                        $arrArticle['size'] = $this->imgSize;
+                        $imgSize = $this->imgSize;
+                    }
+                }
+
+                $figure = System::getContainer()
+                    ->get('contao.image.studio')
+                    ->createFigureBuilder()
+                    ->from($objModel)
+                    ->setSize($imgSize)
+                    ->setOverwriteMetadata($objItem->getOverwriteMetadata())
+                    ->enableLightbox((bool) $objItem->fullsize)
+                    ->buildIfResourceExists();
+
+                $figure?->applyLegacyTemplateData($objTemplate);
             }
         }
-
-        return null;
     }
 
     private function getMembersRank($membersRank, $membersRankHonory)
@@ -269,7 +278,6 @@ class ModuleFirefighterReader extends ModuleFirefighter
     protected function getFunctionLongName($functionId): string
     {
         $function = Database::getInstance()
-            //->prepare("SELECT function_short FROM tl_firefighter_functions WHERE id=?")
             ->prepare("SELECT function_long FROM tl_firefighter_functions WHERE id=?")
             ->execute($functionId);
 
