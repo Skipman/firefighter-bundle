@@ -13,7 +13,7 @@
         <?php if (!empty($this->membersFunctionLocal)): ?>
           <p>
             <?php foreach ($this->membersFunctionLocal as $function): ?>
-              <?= $function['short']; ?> <?php if (!empty($function['period'])): ?>(<?= $function['period'] ?? ''; ?>)<?php endif; ?><br>
+              <?= $function['short']; ?><br>
             <?php endforeach; ?>
           </p>
         <?php endif; ?>
