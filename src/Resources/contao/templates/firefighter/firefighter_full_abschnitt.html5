@@ -9,6 +9,14 @@
       <h1 itemprop="name"><?= $this->membersFirstname; ?> <?= $this->membersLastname ?></h1>
     </div>
     
+    <div class="homebase-info">
+      <?php if (!empty($this->membersHomebaseWebsite)): ?>
+        Mitglied der <a href="<?= $this->membersHomebaseWebsite ?>" target="_blank" title="Die Webseite der FF <?= $this->membersHomebase ?> in neuem Fenster öffnen">FF <?//= $this->membersHomebase ?></a>
+      <?php else: ?>
+        Mitglied der FF <?= $this->membersHomebase ?>
+      <?php endif; ?>
+    </div>
+    
     <?php if ($this->membersSince): ?>
       <div>
         <p><strong>Freiwilliges Mitglied seit:</strong> <?= $this->membersSince; ?></p>

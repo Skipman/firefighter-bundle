@@ -58,7 +58,7 @@ $GLOBALS['TL_DCA']['tl_firefighter'] = [
         'sorting' => [
             'mode' => DataContainer::MODE_PARENT,
             'fields' => [
-                '(SELECT ffnumber FROM tl_firefighter_departments WHERE tl_firefighter_departments.id = tl_firefighter.membersHomebase)',
+                'membersHomebase',
                 'membersLastname'
             ],
             'panelLayout' => 'filter;sort,search,limit',
@@ -196,7 +196,7 @@ $GLOBALS['TL_DCA']['tl_firefighter'] = [
         ],        
         'membersRankHonory' => [
             'exclude' => true,
-            'search' => true,
+            'search' => false,
             'flag' => 1,
             'inputType' => 'checkbox',
             'eval' => [
@@ -208,9 +208,10 @@ $GLOBALS['TL_DCA']['tl_firefighter'] = [
         'membersHomebase' => [
             'label' => &$GLOBALS['TL_LANG']['tl_firefighter']['membersHomebase'],
             'exclude' => true,
-            'search' => true,
+            'search' => false,
             'sorting' => true,
-            'flag' => 1,
+            'filter' => true,
+            'flag' => 11,
             'inputType' => 'select',
             'options_callback' => [FirefighterHelper::class, 'getDepartments'],
             'eval' => [
@@ -670,7 +671,7 @@ class tl_firefighter extends Backend
 
         return $result->numRows ? $result->ffname : '';
     }
-
+/*
     protected function getDepartmentDetails($homebaseId): string
     {
         $result = Database::getInstance()
@@ -685,7 +686,7 @@ class tl_firefighter extends Backend
         $departmentDetails = $this->getDepartmentDetails($homebaseId);
         return '<div class="tl_content_header">' . $departmentDetails . '</div>';
     }
-
+*/
     /**
      * Get the short abbreviation of the rank based on the ID.
      *
